@@ -1,3 +1,8 @@
+import json
+
+with open('calculator_messages.json', 'r') as file:
+    MESSAGES = json.load(file)
+
 def prompt(message):
     print(f"==> {message}")
 
@@ -10,30 +15,30 @@ def invalid_number(number_str):
     return False
 
 def number_one():
-    prompt("What's the first number?")
+    prompt(MESSAGES["first_number"])
     number1 = input()
 
     while invalid_number(number1):
-        prompt("Hmm... that doesn't look like a valid number.")
+        prompt(MESSAGES["invalid_number"])
         number1 = input()
     return number1
         
 def number_two():
-    prompt("What's the second number?")
+    prompt(MESSAGES["second_number"])
     number2 = input()
 
     while invalid_number(number2):
-        prompt("Hmm... that doesn't look like a valid number.")
+        prompt(MESSAGES["invalid_number"])
         number2 = input()
     return number2
 
 def operation_choice():
-    prompt("What operation would you like to perform?\n1) Add 2) Subtract 3) "
-       "Multiply 4) Divide")
+    operation_message = '\n'.join(MESSAGES['operation_message'])
+    prompt(operation_message)
     operation = input()
 
     while operation not in ["1", "2", "3", "4"]:
-        prompt("You must choose 1, 2, 3, or 4")
+        prompt(MESSAGES["invalid_choice"])
         operation = input()
     return operation
 
@@ -48,24 +53,25 @@ def math(number1, number2, choice):
             output = int(number1) * int(number2)
         case "4":
             output = int(number1) / int(number2)
-    prompt(f"The result is {output}")
+    prompt(MESSAGES["result"].format(variable=output))
     
 def repeat():
-    prompt("Would you like to do another calculation? Yes to go again!")
+    prompt(MESSAGES["repeat"])
     answer = input()
     
     if answer.lower() == 'yes':
-        print("Great, let's go again!")
+        print(MESSAGES["yes"])
         main()
-    else: print("Thank you for playing!")
+    else: print(MESSAGES["no"])
     
 
 def main():
-    prompt("Welcome to Calculator!")
     number1 = number_one()
     number2 = number_two()
     choice = operation_choice()
     math(number1, number2, choice)
     repeat()
-    
+
+prompt(MESSAGES["welcome"])
+
 main()
