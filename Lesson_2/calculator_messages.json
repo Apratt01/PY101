@@ -1,19 +1,44 @@
 {
-    "welcome": "Welcome to Calculator!",
-    "invalid_number": "Hmm... that doesn't look like a valid number.",
-    "first_number": "What's the first number?",
-    "second_number": "What's the second number?",
-    "operation_message": [
-        "What operation would you like to perform?",
-        "1) Add",
-        "2) Subtract",
-        "3) Multiply",
-        "4) Divide"
-    ],
-    "invalid_choice": "You must choose 1, 2, 3, or 4",
-    "result": "the result is {variable}",
-    "repeat": "Would you like to do another calculation? Yes to go again!",
-    "yes" : "Great, let's go again!",
-    "no" : "Thank you for playing!"
-    
+    "language_en": "Please choose a language, En for English. ",
+    "language_sp": "Por favor elija un idioma, Sp para español: ",
+    "invalid_language_en" : "That is not a valid choice, please try again.",
+    "invalid_language_sp" : "Esa no es una opción válida, inténtalo de nuevo.",
+    "en": 
+    {
+        "welcome": "Welcome to Calculator!",
+        "invalid_number": "Hmm... that doesn't look like a valid number.",
+        "first_number": "What's the first number?",
+        "second_number": "What's the second number?",
+        "operation_message": [
+            "What operation would you like to perform?",
+            "1) Add",
+            "2) Subtract",
+            "3) Multiply",
+            "4) Divide"
+        ],
+        "invalid_choice": "You must choose 1, 2, 3, or 4",
+        "result": "the result is {variable}",
+        "repeat": "Would you like to do another calculation? Yes to go again!",
+        "yes" : "Great, let's go again!",
+        "no" : "Thank you for playing!"
+    },
+    "sp":
+    {
+        "welcome": "Bienvenida a la calculadora!",
+        "invalid_number": "Hmm... ese no parece un número válido.",
+        "first_number": "¿Cuál es el primer número?",
+        "second_number": "¿Cuál es el segundo número?",
+        "operation_message": [
+            "¿Qué operación te gustaría realizar?",
+            "1) Agregar",
+            "2) Sustraer",
+            "3) Multiplicar",
+            "4) Dividir"
+        ],
+        "invalid_choice": "Debes elegir 1, 2, 3 o 4",
+        "result": "el resultado es {variable}",
+        "repeat": "¿Quieres hacer otro cálculo? ¡Sí para volver!",
+        "yes" : "Genial, ¡vamos de nuevo!",
+        "no" : "¡Gracias por jugar!"
+    }    
 }
