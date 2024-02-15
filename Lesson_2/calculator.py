@@ -27,7 +27,7 @@ def choose_language(language):
 
 def invalid_number(number_str):
     try:
-        int(number_str)
+        float(number_str)
     except ValueError:
         return True
 
@@ -65,13 +65,13 @@ def math(number1, number2, choice):
     output = 0
     match choice:
         case "1":
-            output = int(number1) + int(number2)
+            output = float(number1) + float(number2)
         case "2":
-            output = int(number1) - int(number2)
+            output = float(number1) - float(number2)
         case "3":
-            output = int(number1) * int(number2)
+            output = float(number1) * float(number2)
         case "4":
-            output = int(number1) / int(number2)
+            output = float(number1) / float(number2)
     prompt(language_message["result"].format(variable=output))
     
 def repeat():
