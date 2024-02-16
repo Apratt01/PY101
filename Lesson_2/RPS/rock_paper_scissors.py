@@ -1,42 +1,4 @@
-import platform
 import random
-import json
-import os
-
-with open('mortgage_messages.json', 'r') as file:
-    MESSAGES = json.load(file) # import JSON file
-
-def prompt(message):
-    print(f"==> {message}")
-
-def clear_screen():
-    os_name = platform.system()
-
-    if os_name == 'Windows':
-        os.system('cls')  # Clear screen on Windows
-    else:
-        os.system('clear')  # Clear screen on Unix/Linux/Mac
-
-def ask_language():
-    choices = ['en', 'sp', 'english', 'spanish', 'español']
-    prompt(MESSAGES["language_en"])
-    prompt(MESSAGES["language_sp"])
-    language = input()
-
-    while language.lower() not in choices:
-        prompt(MESSAGES["invalid_language_en"])
-        prompt(MESSAGES["invalid_language_sp"])
-        language = input()
-
-    language_lower = language.lower()
-    return language_lower
-
-def choose_language(language):
-
-    if language in ('en', 'english'):
-        return MESSAGES['en']
-
-    return MESSAGES['sp']
 
 validChoices = ["rock", "paper", "scissors"]
 
@@ -77,5 +39,3 @@ while True:
 
     if answer[0] != "y":
         break
-    
-    
