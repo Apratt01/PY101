@@ -1,0 +1,55 @@
+{
+    "language_en": "Please choose a language, En for English. ",
+    "language_sp": "Por favor elija un idioma, Sp para español: ",
+    "invalid_language_en" : "That is not a valid choice, please try again.",
+    "invalid_language_sp" : "Esa no es una opción válida, inténtalo de nuevo.",
+    "en": 
+    {
+        "welcome": "Welcome to the Mortgage Calculator!",
+        "invalid_number": "Hmm... that doesn't look like a valid number.",
+        "loan_amount": "How much is the loan for?",
+        "int_rate": "What is the annual interest rate? (please enter as 5.5%)",
+        "loan_years": "Please enter the number of years of your loan: ",
+        "loan_months": "Please enter the number of months of your loan: ",
+        "zero_months": "The total time of years and months cannot be zero.",
+        "recap": [
+            "------------------------Recap-------------------------",
+            "Loan amount: ${loan_amount:,.2f}",
+            "Annual Percentage Rate: %{apr:.2f}",
+            "Number of payments: {time}"
+            ],
+        "result": [
+            "-------------------------Result------------------------",
+            "Monthly payment amount: ${monthly_payment:,.2f}",
+            "Total amount paid: ${amount_paid:,.2f}",
+            "Total interest paid: ${interest_paid:,.2f}."
+            ],
+        "repeat": "Would you like to do another calculation? Yes to go again!",
+        "no" : "Thank you!"
+    },
+    "sp":
+    {
+        "welcome": "Bienvenida a la Hipoteca Calculadora!",
+        "invalid_number": "Hmm... ese no parece un número válido.",
+        "loan_amount": "¿A cuánto asciende el préstamo?",
+        "int_rate": "¿Cuál es la tasa de interés anual? (ingrese como 5,5%)",
+        "loan_years": "Por favor ingrese el número de años de su préstamo:", 
+        "loan_months": "Por favor ingrese el número de meses de su préstamo: ",
+        "zero_months": "El tiempo total de años y meses no puede ser cero.",
+        "recap" : [
+            "------------------------Resumen-------------------------",
+            "Monto del préstamo: ${loan_amount:,.2f}",
+            "Tasa de porcentaje anual: %{apr:.2f}",
+            "Número de pagos restantes del préstamo: {time}"
+            ],
+        "result": [
+            "------------------------Resultado------------------------",
+            "Monto del pago: ${monthly_payment:,.2f}",
+            "Cantidad total pagada: ${amount_paid:,.2f}",
+            "Intereses totales pagados: ${interest_paid:,.2f}."
+            ],
+        "invalid_choice": "Debes elegir 1, 2, 3 o 4",
+        "repeat": "¿Quieres hacer otro cálculo? ¡Sí para volver!",
+        "no" : "¡Gracias!"
+    }    
+}
