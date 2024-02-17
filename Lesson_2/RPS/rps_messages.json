@@ -1,16 +1,18 @@
 {
-    "language_en": "Please choose a language, En for English. ",
-    "language_sp": "Por favor elija un idioma, Sp para español: ",
-    "invalid_language_en" : "That is not a valid choice, please try again.",
-    "invalid_language_sp" : "Esa no es una opción válida, inténtalo de nuevo.",
     "en": 
     {
-        "welcome": "Welcome to the Mortgage Calculator!",
-        
+        "language": 
+            "Please choose En for English, o elige Sp para español. ",
+        "invalid_language": [
+            "That is not a valid choice, please try again.",
+            "Esa no es una opción válida, inténtalo de nuevo."
+        ],
+        "welcome":
+           "Welcome to the the Rock, Paper, Scissors, LIzard, and Spock game"
     },
     "sp":
     {
-        "welcome": "Bienvenida a la Hipoteca Calculadora!",
-        
+        "welcome": 
+            "Bienvenido al juego Piedra, Papel, Tijera, Lagarto y Spock."
     }    
 }
