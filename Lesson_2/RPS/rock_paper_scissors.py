@@ -6,7 +6,9 @@ import os
 with open('rps_messages.json', 'r') as file:
     MESSAGES = json.load(file) # import JSON file
 
-validChoices = ["rock", "paper", "scissors"]
+VALID_CHOICES_EN = ['rock', 'paper', 'scissors'];
+VALID_CHOICES_SP = ['roca', 'papel', 'tijeras'];
+
 language = MESSAGES["en"]
 
 def prompt(message):    
@@ -41,40 +43,42 @@ def clear_screen():
     else:
         os.system('clear')  # Clear screen on Unix/Linux/Mac
 
-# def display_winner(player, computer):
-#     prompt(f"You chose {player}, computer chose {computer}")
+def display_winner(player, computer):
+    prompt(language["choice_recap"].format(player_choice=player,
+        computer_choice=computer))
 
-#     if ((player == "rock" and computer == "scissors") or
-#         (player == "paper" and computer == "rock") or
-#         (player == "scissors" and computer == "paper")):
-#         prompt("You win!")
-#     elif ((player == "rock" and computer == "paper") or
-#           (player == "paper" and computer == "scissors") or
-#           (player == "scissors" and computer == "rock")):
-#         prompt("Computer wins!")
-#     else:
-#         prompt("It's a tie!")
+    if ((player == "rock" and computer == "scissors") or
+        (player == "paper" and computer == "rock") or
+        (player == "scissors" and computer == "paper")):
+        prompt(language["player_win"])
+    elif ((player == "rock" and computer == "paper") or
+          (player == "paper" and computer == "scissors") or
+          (player == "scissors" and computer == "rock")):
+        prompt(language["computer_win"])
+    else:
+        prompt(language["tie"])
 
-# while True:
-#     prompt(f'Choose one: {", ".join(validChoices)}')
-#     choice = input()
+while True:
+    prompt(language["choose"])
+    prompt({", ".join(VALID_CHOICES_EN)})
+    choice = input()
 
-#     while choice not in validChoices:
-#         prompt("That's not a valid choice")
-#         choice = input()
+    while choice not in VALID_CHOICES_EN:
+        prompt(language["invalid_choice"])
+        choice = input()
 
-#     computer_choice = random.choice(validChoices)
+    computer_choice = random.choice(VALID_CHOICES_EN)
 
-#     display_winner(choice, computer_choice)
+    display_winner(choice, computer_choice)
 
-#     prompt("Do you want to play again (y/n)?")
-#     answer = input().lower()
-#     while answer and answer[0] != "n" and answer[0] != "y":
-#         prompt('Please enter "y" or "n".')
-#         answer = input().lower()
+    prompt("Do you want to play again (y/n)?")
+    answer = input().lower()
+    while answer and answer[0] != "n" and answer[0] != "y":
+        prompt(language["yes_or_no"])
+        answer = input().lower()
 
-#     if answer[0] != "y":
-#         break
+    if answer[0] != "y":
+        break
 
 def main():
     clear_screen()
