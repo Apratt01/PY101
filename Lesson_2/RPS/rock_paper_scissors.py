@@ -76,9 +76,11 @@ def clear_screen():
 #     if answer[0] != "y":
 #         break
 
-def start():
+def main():
+    clear_screen()
     global language
     language = ask_language()
     language = choose_language(language)
+    clear_screen()
     
-start()
+main()
