@@ -19,8 +19,16 @@ def clear_screen():
     else:
         os.system('clear')  # Clear screen on Unix/Linux/Mac
 
-def ask_language():
-    choices = ['en', 'sp', 'english', 'spanish', 'español']
+def clear_input(input_value):
+    symbols = ['$', '%', ',']
+    for symbol in symbols:
+        if symbol in input_value:
+            input_value = input_value.replace(symbol, '')
+    return input_value
+            
+
+def get_language():
+    choices = ['en', 'es', 'english', 'spanish', 'español']
     prompt(MESSAGES["language_en"])
     prompt(MESSAGES["language_sp"])
     language = input()
@@ -58,25 +66,29 @@ def invalid_number(num_str):
     except ValueError:
         return True
 
-    return False
+    return False    
 
 def get_loan_amount():
     prompt(language_message["loan_amount"])
     amount = input()
+    amount = clear_input(amount)
 
     while invalid_loan_amount(amount):
         prompt(language_message["invalid_number"])
         amount = input()
+        amount = clear_input(amount)
 
     return float(amount)
 
 def get_interest_rate():
     prompt(language_message["int_rate"])
     apr = input()
+    apr = clear_input(apr)
 
     while invalid_number(apr):
         prompt(language_message["invalid_number"])
         apr = input()
+        apr = clear_input(apr)
 
     return float(apr)
 
@@ -162,9 +174,8 @@ def main():
     clear_screen()
     prompt(MESSAGES["en"]["welcome"])
     prompt(MESSAGES["sp"]["welcome"])
-    language_choice = ask_language()
+    language_choice = get_language()
     language_message = choose_language(language_choice)
     start()
 
 main()
-    
