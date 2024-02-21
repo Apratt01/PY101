@@ -7,6 +7,7 @@ with open('mortgage_messages.json', 'r') as file:
 
 MONTHS_IN_YEAR = 12
 DECIMAL_CONVERSION = 100
+language_choice = None # Global variable - changed depending on user input
 
 def prompt(message):
     print(f"==> {message}")
@@ -25,7 +26,6 @@ def clean_input(input_value):
         if symbol in input_value:
             input_value = input_value.replace(symbol, '')
     return input_value
-            
 
 def get_language():
     choices = ['en', 'es', 'english', 'spanish', 'español']
@@ -67,7 +67,7 @@ def invalid_number(num_str):
         return True
 
     return False
-    
+
 def invalid_integer(num_str):
     try:
         int(num_str)
@@ -75,7 +75,7 @@ def invalid_integer(num_str):
             return True
     except ValueError:
         return True
-    
+
     return False
 
 def get_loan_amount():
@@ -130,7 +130,7 @@ def get_loan_years():
         prompt(language_message["invalid_number"])
         years = input()
         years = clean_input(years)
-    
+
     return int(years)
 
 def get_loan_months():
@@ -156,8 +156,9 @@ def math(loan, interest, months):
 
     total_paid = monthly_payment * months
     interest_paid = total_paid - loan
-    display_recap(loan, interest, months)
-    display_totals(monthly_payment, total_paid, interest_paid)
+
+    return monthly_payment, total_paid, interest_paid
+
 
 def display_recap(loan, interest, months):
     recap_message = '\n'.join(language_message['recap'])
@@ -171,20 +172,19 @@ def display_totals(payment, total_paid, total_interest):
 
 def repeat():
     prompt(language_message["repeat"])
-    answer = input()
+    user_answer = input()
 
-    if answer.lower() == 'yes' or answer.lower() == 'y':
-        start()
-    else: prompt(language_message["no"])
-
+    return user_answer
 
 def start():
     clear_screen()
     loan = get_loan_amount()
     interest_rate = get_interest_rate()
     months_of_loan = get_loan_duration()
-    math(loan, interest_rate, months_of_loan)
-    repeat()
+    payment, total_paid, int_paid = math(loan, interest_rate, months_of_loan)
+    display_recap(loan, interest_rate, months_of_loan)
+    display_totals(payment, total_paid, int_paid)
+
 
 def main():
     global language_message
@@ -196,3 +196,12 @@ def main():
     start()
 
 main()
+
+while True:
+    answer = repeat()
+    choice = ('y', 'Yes', 'Y', 'yes', 'YES')
+    if answer in choice:
+        start()
+    else:
+        prompt(language_message["no"])
+        break
