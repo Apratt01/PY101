@@ -9,8 +9,16 @@
         "invalid_number": "Hmm... that doesn't look like a valid number.",
         "loan_amount": "How much is the loan for?",
         "int_rate": "What is the annual interest rate? (please enter as 5.5%)",
-        "loan_years": "Please enter the number of years of your loan: ",
-        "loan_months": "Please enter the number of months of your loan: ",
+        "loan_years": [
+            "Please enter the number of years of your loan: ",
+            "Years must be in whole numbers, please do not enter partial years.",
+            "Rounding up will give you the most conservative estimate."
+            ],
+        "loan_months": [
+            "Please enter the number of months of your loan: ",
+            "Months must be in whole numbers, please do not enter partial years.",
+            "Rounding up will give you the most conservative estimate."
+            ],
         "zero_months": "The total time of years and months cannot be zero.",
         "recap": [
             "------------------------Recap-------------------------",
@@ -33,8 +41,16 @@
         "invalid_number": "Hmm... ese no parece un número válido.",
         "loan_amount": "¿A cuánto asciende el préstamo?",
         "int_rate": "¿Cuál es la tasa de interés anual? (ingrese como 5,5%)",
-        "loan_years": "Por favor ingrese el número de años de su préstamo:", 
-        "loan_months": "Por favor ingrese el número de meses de su préstamo: ",
+        "loan_years": [
+            "Por favor ingrese el número de años de su préstamo: ",
+            "Los años deben estar en números enteros, no ingrese años parciales.",
+            "Redondear hacia arriba le dará la estimación más conservadora."
+            ],
+        "loan_months": [
+            "Por favor ingrese el número de meses de su préstamo: ",
+            "Los meses deben estar en números enteros, no ingrese años parciales.",
+            "Redondear hacia arriba le dará la estimación más conservadora."
+            ],
         "zero_months": "El tiempo total de años y meses no puede ser cero.",
         "recap" : [
             "------------------------Resumen-------------------------",

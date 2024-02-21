@@ -19,8 +19,8 @@ def clear_screen():
     else:
         os.system('clear')  # Clear screen on Unix/Linux/Mac
 
-def clear_input(input_value):
-    symbols = ['$', '%', ',']
+def clean_input(input_value):
+    symbols = ['$', '%', ',', '#']
     for symbol in symbols:
         if symbol in input_value:
             input_value = input_value.replace(symbol, '')
@@ -66,29 +66,39 @@ def invalid_number(num_str):
     except ValueError:
         return True
 
-    return False    
+    return False
+    
+def invalid_integer(num_str):
+    try:
+        int(num_str)
+        if int(num_str) < 0:
+            return True
+    except ValueError:
+        return True
+    
+    return False
 
 def get_loan_amount():
     prompt(language_message["loan_amount"])
     amount = input()
-    amount = clear_input(amount)
+    amount = clean_input(amount)
 
     while invalid_loan_amount(amount):
         prompt(language_message["invalid_number"])
         amount = input()
-        amount = clear_input(amount)
+        amount = clean_input(amount)
 
     return float(amount)
 
 def get_interest_rate():
     prompt(language_message["int_rate"])
     apr = input()
-    apr = clear_input(apr)
+    apr = clean_input(apr)
 
     while invalid_number(apr):
         prompt(language_message["invalid_number"])
         apr = input()
-        apr = clear_input(apr)
+        apr = clean_input(apr)
 
     return float(apr)
 
@@ -111,22 +121,29 @@ def years_to_months(years, months):
     return total_months
 
 def get_loan_years():
-    prompt(language_message["loan_years"])
+    year_prompt = '\n'.join(language_message['loan_years'])
+    prompt(year_prompt)
     years = input()
+    years = clean_input(years)
 
-    while invalid_number(years):
+    while invalid_integer(years):
         prompt(language_message["invalid_number"])
         years = input()
+        years = clean_input(years)
+    
     return int(years)
 
 def get_loan_months():
-    prompt(language_message["loan_months"])
-    years = input()
+    month_prompt = '\n'.join(language_message['loan_months'])
+    prompt(month_prompt)
+    months = input()
+    months = clean_input(months)
 
-    while invalid_number(years):
+    while invalid_integer(months):
         prompt(language_message["invalid_number"])
-        years = input()
-    return int(years)
+        months = input()
+        months = clean_input(months)
+    return int(months)
 
 def math(loan, interest, months):
     if interest == 0:
