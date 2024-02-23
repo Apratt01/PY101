@@ -80,12 +80,25 @@ def display_winner(player, computer, winner):
         prompt(MESSAGES["computer_win"])
     else:
         prompt(MESSAGES["tie"])
+        
+def game_score_tracker(winner):
+    player_wins = 0
+    computer_wins = 0
+    if winner == 'player':
+        player_wins += 1
+    elif winner == 'computer':
+        computer_wins += 0
+        
+    return player_wins, computer_wins
+    
 
 def game_round():
     player= get_player_choice()
     computer = get_computer_choice()
     winner = select_winner(player, computer)
     display_winner(player, computer, winner)
+    player_wins, computer_wins = game_score_tracker(winner)
+    print(player_wins, computer_wins)
 
 def main():
     clear_screen()
