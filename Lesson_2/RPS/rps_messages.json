@@ -3,11 +3,12 @@
             "You chose {player_choice}, computer chose {computer_choice}",
         "welcome":
            "Welcome to the the Rock, Paper, Scissors, LIzard, and Spock game",
-        "player_win": "You win!",
-        "computer_win": "Computer wins!",
-        "tie": "It's a tie!",
+        "player_win": "You win this round!",
+        "computer_win": "Computer wins this round!",
+        "tie": "It's a tie this round!",
         "choose": "Please enter {key} for {value}.",
         "invalid_choice": "That's not a valid choice.",
         "play_again": "Do you want to play again (y/n)?",
-        "yes_or_no": "Please enter \"y\" or \"n\"."
+        "yes_or_no": "Please enter \"y\" or \"n\".",
+        "grand_winner": "The Grand Winner, with 5 wins, is {winner}!!"
 }

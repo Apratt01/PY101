@@ -6,6 +6,7 @@ import os
 with open('rps_messages.json', 'r') as file:
     MESSAGES = json.load(file) # import JSON file
 
+WINNING_SCORE = 5
 GAME_CHOICES = {
     'wins': {
         'scissors': ['paper', 'lizard'],
@@ -63,9 +64,9 @@ def get_computer_choice():
 def select_winner(player, computer):
     
     if player in GAME_CHOICES['wins'][computer]:
-        return 'computer'
+        return 'computer_wins'
     elif computer in GAME_CHOICES['wins'][player]:
-        return 'player'
+        return 'player_wins'
     else:
         return 'ties'
         
@@ -74,34 +75,44 @@ def display_winner(player, computer, winner):
     prompt(MESSAGES["choice_recap"].format(player_choice=player,
         computer_choice=computer))
         
-    if winner == 'player':
+    if winner == 'player_wins':
         prompt(MESSAGES["player_win"])
-    elif winner == 'computer':
+    elif winner == 'computer_wins':
         prompt(MESSAGES["computer_win"])
     else:
         prompt(MESSAGES["tie"])
         
-def game_score_tracker(winner):
-    player_wins = 0
-    computer_wins = 0
-    if winner == 'player':
-        player_wins += 1
-    elif winner == 'computer':
-        computer_wins += 0
-        
-    return player_wins, computer_wins
+def game_score_tracker(winner, score_tracker):
+    if winner in ('player_wins', 'computer_wins'):
+        score_tracker[winner] += 1
+    return score_tracker
     
+def grand_winner(score_tracker):
+    for winner, score in score_tracker.items():
+        if score == WINNING_SCORE:
+            game_winner = winner
+            if game_winner == 'player_wins':
+                prompt(MESSAGES["grand_winner"].format(winner="Player"))
+            else:
+                prompt(MESSAGES["grand_winner"].format(winner="Computer"))
+    
+def game_play():
+    while True:
+        score_tracker = {'player_wins': 0, 'computer_wins':0}
+        list_of_scores = list(score_tracker.values())
+        
+        while WINNING_SCORE not in list_of_scores:
+            
+            player= get_player_choice()
+            computer = get_computer_choice()
+            winner = select_winner(player, computer)
+            display_winner(player, computer, winner)
+            score_tracker = game_score_tracker(winner, score_tracker)
+            list_of_scores = list(score_tracker.values())
+            print(score_tracker)
+        grand_winner(score_tracker)
+        break
 
-def game_round():
-    player= get_player_choice()
-    computer = get_computer_choice()
-    winner = select_winner(player, computer)
-    display_winner(player, computer, winner)
-    player_wins, computer_wins = game_score_tracker(winner)
-    print(player_wins, computer_wins)
 
-def main():
-    clear_screen()
-    game_round()
 
-main()
+game_round()
