@@ -1,20 +1,21 @@
 {       
         "choice_recap":
-            "You chose {player_choice}, computer chose {computer_choice}",
+            "You chose {player_choice}, Computer chose {computer_choice}.",
         "welcome":
-           "Welcome to the the Rock, Paper, Scissors, LIzard, and Spock game",
+           "Welcome to the the Rock, Paper, Scissors, Lizard, and Spock game!",
         "rules_read": 
             "Would you like to review the rules before we start (y/n)?",
         "player_win": "You win this round!",
         "computer_win": "Computer wins this round!",
         "tie": "It's a tie this round!",
-        "choose": "Please enter {key} for {value}.",
+        "choose": "Please enter ({key}) for {value}.",
         "invalid_choice": "That's not a valid choice.",
         "play_again": "Do you want to play again (y/n)?",
         "yes_or_no": "Please enter \"y\" or \"n\".",
         "grand_winner": "The Grand Winner, with 5 wins, is {winner}!!",
         "rules": [
             "--------------------------------",
+            "These are the winning combinations:",
             "Scissors cuts Paper",                    
             "Paper covers Rock",
             "Rock crushes Lizard",
@@ -29,5 +30,12 @@
             "First to {winning_number} wins!",
             "--------------------------------",
             ""
-            ]
+            ],
+        "score_recap": [
+            "----------------------------------",
+            "The current score is:",
+            "Player {player_wins}, Computer {computer_wins}!",
+            "----------------------------------"
+            ],
+        "goodbye": "Thank you for playing!"
 }
