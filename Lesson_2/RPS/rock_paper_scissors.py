@@ -6,7 +6,7 @@ import os
 with open('rps_messages.json', 'r') as file:
     MESSAGES = json.load(file) # import JSON file
 
-PLAYING_PIECES = {
+GAME_CHOICES = {
     'wins': {
         'scissors': ['paper', 'lizard'],
         'paper': ['rock', 'spock'],
@@ -39,23 +39,20 @@ def display_winner(player, computer):
     prompt(MESSAGES["choice_recap"].format(player_choice=player,
         computer_choice=computer))
     
-    player_win = PLAYING_PIECES['wins'][player]
-    computer_win = PLAYING_PIECES['wins'][computer]
-    
-    if computer in player_win:
-        prompt(MESSAGES["player_win"])
-    elif player in computer_win:
-        prompt(MESSAGES["computer_win"])
-    else:
+    if player in GAME_CHOICES['wins'][computer]:                                                                                  
+        prompt(MESSAGES["computer_win"])                                                                                                                                                        
+    elif computer in GAME_CHOICES['wins'][player]:                                                                      
+        prompt(MESSAGES["player_win"])                                                                                                                                               
+    else:                                                                                                                                                                               
         prompt(MESSAGES["tie"])
-        
+                
 def get_choices():
 
     while True:
         list_of_intials = []
         list_of_words = []
         combined_list = []
-        for initial, word in PLAYING_PIECES['choices'].items():
+        for initial, word in GAME_CHOICES['choices'].items():
             prompt(MESSAGES['choose'].format(key=initial, value=word))
             list_of_words.append(word)
             combined_list.append(initial)
@@ -67,7 +64,7 @@ def get_choices():
             choice = input()
             
         computer = random.choice(list_of_words)
-        player = PLAYING_PIECES['choices'][choice]
+        player = GAME_CHOICES['choices'][choice]
         return computer, player
             
 def game_round():
@@ -76,7 +73,7 @@ def game_round():
     
 computer, player = game_round()
 print(computer, player)
-
+display_winner(player, computer)
 
 #     display_winner(choice, computer_choice)
 
