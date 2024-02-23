@@ -6,34 +6,26 @@ import os
 with open('rps_messages.json', 'r') as file:
     MESSAGES = json.load(file) # import JSON file
 
-VALID_CHOICES_EN = ['rock', 'paper', 'scissors'];
-VALID_CHOICES_SP = ['roca', 'papel', 'tijeras'];
+PLAYING_PIECES = {
+    'wins': {
+        'scissors': ['paper', 'lizard'],
+        'paper': ['rock', 'spock'],
+        'rock': ['lizard', 'scissors'],
+        'lizard': ['spock', 'paper'],
+        'spock': ['scissors', 'rock']
+        },
+    'choices': {
+        's': 'scissors',
+        'p': 'paper',
+        'r': 'rock',
+        'l': 'lizard',
+        'sp': 'spock'
+        }
+    }
 
-language = MESSAGES["en"]
 
 def prompt(message):    
     print(f"==> {message}")
-
-def ask_language():
-    choices = ['en', 'sp', 'english', 'spanish', 'español']
-    prompt(MESSAGES['en']["language"])
-    language = input()
-
-    while language.lower() not in choices:
-        invalid = '\n'.join("invalid_language")
-        prompt(invalid)
-        language = input()
-
-    language_lower = language.lower()
-    return language_lower
-
-def choose_language(language):
-
-    if language in ('en', 'english'):
-        return MESSAGES["en"]
-
-    return MESSAGES["sp"]
-
 
 def clear_screen():
     os_name = platform.system()
@@ -44,47 +36,64 @@ def clear_screen():
         os.system('clear')  # Clear screen on Unix/Linux/Mac
 
 def display_winner(player, computer):
-    prompt(language["choice_recap"].format(player_choice=player,
+    prompt(MESSAGES["choice_recap"].format(player_choice=player,
         computer_choice=computer))
-
-    if ((player == "rock" and computer == "scissors") or
-        (player == "paper" and computer == "rock") or
-        (player == "scissors" and computer == "paper")):
-        prompt(language["player_win"])
-    elif ((player == "rock" and computer == "paper") or
-          (player == "paper" and computer == "scissors") or
-          (player == "scissors" and computer == "rock")):
-        prompt(language["computer_win"])
-    else:
-        prompt(language["tie"])
-
-while True:
-    prompt(language["choose"])
-    prompt({", ".join(VALID_CHOICES_EN)})
-    choice = input()
-
-    while choice not in VALID_CHOICES_EN:
-        prompt(language["invalid_choice"])
-        choice = input()
-
-    computer_choice = random.choice(VALID_CHOICES_EN)
-
-    display_winner(choice, computer_choice)
-
-    prompt("Do you want to play again (y/n)?")
-    answer = input().lower()
-    while answer and answer[0] != "n" and answer[0] != "y":
-        prompt(language["yes_or_no"])
-        answer = input().lower()
-
-    if answer[0] != "y":
-        break
-
-def main():
-    clear_screen()
-    global language
-    language = ask_language()
-    language = choose_language(language)
-    clear_screen()
     
-main()
+    player_win = PLAYING_PIECES['wins'][player]
+    computer_win = PLAYING_PIECES['wins'][computer]
+    
+    if computer in player_win:
+        prompt(MESSAGES["player_win"])
+    elif player in computer_win:
+        prompt(MESSAGES["computer_win"])
+    else:
+        prompt(MESSAGES["tie"])
+        
+def get_choices():
+
+    while True:
+        list_of_intials = []
+        list_of_words = []
+        combined_list = []
+        for initial, word in PLAYING_PIECES['choices'].items():
+            prompt(MESSAGES['choose'].format(key=initial, value=word))
+            list_of_words.append(word)
+            combined_list.append(initial)
+            combined_list.append(word)
+        choice = input()
+        
+        while choice.lower() not in combined_list:
+            prompt(MESSAGES["invalid_choice"])
+            choice = input()
+            
+        computer = random.choice(list_of_words)
+        player = PLAYING_PIECES['choices'][choice]
+        return computer, player
+            
+def game_round():
+    computer, player = get_choices()
+    return computer, player
+    
+computer, player = game_round()
+print(computer, player)
+
+
+#     display_winner(choice, computer_choice)
+
+#     prompt("Do you want to play again (y/n)?")
+#     answer = input().lower()
+#     while answer and answer[0] != "n" and answer[0] != "y":
+#         prompt(language["yes_or_no"])
+#         answer = input().lower()
+
+#     if answer[0] != "y":
+#         break
+
+# def main():
+#     clear_screen()
+#     global language
+#     language = ask_language()
+#     language = choose_language(language)
+#     clear_screen()
+    
+# main()

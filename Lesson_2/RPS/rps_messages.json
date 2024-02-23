@@ -1,13 +1,4 @@
-{
-    "en":
-    {
-        "language":
-            "Please choose En for English, o elige Sp para español. ",
-        "invalid_language":
-        [
-            "That is not a valid choice, please try again.",
-            "Esa no es una opción válida, inténtalo de nuevo."
-        ],
+{       
         "choice_recap":
             "You chose {player_choice}, computer chose {computer_choice}",
         "welcome":
@@ -15,23 +6,8 @@
         "player_win": "You win!",
         "computer_win": "Computer wins!",
         "tie": "It's a tie!",
-        "choose": "Choose one: ",
+        "choose": "Please enter {key} for {value}.",
         "invalid_choice": "That's not a valid choice.",
         "play_again": "Do you want to play again (y/n)?",
         "yes_or_no": "Please enter \"y\" or \"n\"."
-    },
-    "sp":
-    {
-        "welcome":
-            "Bienvenido al juego Piedra, Papel, Tijera, Lagarto y Spock.",
-        "choice_recap":
-            "Tú elegiste {player_choice}, la computadora eligió {computer_choice}",
-        "player_win": "¡Tú ganas!",
-        "computer_win": "¡La computadora gana!",
-        "tie": "¡La computadora gana!",
-        "choose": "Elige uno: ",
-        "invalid_choice": "Esa no es una elección válida.",
-        "play_again": "¿Quieres jugar de nuevo (s/n)?",
-        "yes_or_no": "Por favor ingrese \"s\" o \"n\"."
-    }
 }
