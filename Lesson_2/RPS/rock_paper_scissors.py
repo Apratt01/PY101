@@ -34,7 +34,23 @@ def clear_screen():
         os.system('cls')  # Clear screen on Windows
     else:
         os.system('clear')  # Clear screen on Unix/Linux/Mac
+        
+def get_rules_choice():
+    prompt(MESSAGES["rules_read"])
+    answer = input()
+    
+    while answer.lower() not in ('y', 'yes', 'n', 'no'):
+        prompt(MESSAGES["yes_or_no"])
+        answer = input()
+    
+    answer = answer.lower()
+    if answer in ('y', 'yes'):
+        display_rules(answer)
 
+def display_rules(answer):
+    rules = '\n'.join(MESSAGES['rules'])
+    print(rules.format(winning_number=WINNING_SCORE))
+        
 def get_player_choice():
 
     while True:
@@ -87,7 +103,7 @@ def game_score_tracker(winner, score_tracker):
         score_tracker[winner] += 1
     return score_tracker
     
-def grand_winner(score_tracker):
+def display_grand_winner(score_tracker):
     for winner, score in score_tracker.items():
         if score == WINNING_SCORE:
             game_winner = winner
@@ -110,9 +126,15 @@ def game_play():
             score_tracker = game_score_tracker(winner, score_tracker)
             list_of_scores = list(score_tracker.values())
             print(score_tracker)
-        grand_winner(score_tracker)
+        display_grand_winner(score_tracker)
         break
 
 
-
-game_round()
+def main():
+    clear_screen()
+    prompt(MESSAGES['welcome'])
+    clear_screen()
+    get_rules_choice()
+    game_play()
+    
+main()
