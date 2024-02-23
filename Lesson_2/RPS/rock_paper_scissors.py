@@ -98,7 +98,6 @@ def select_winner(player, computer):
     return winner
 
 def display_winner(player, computer, winner):
-
     prompt(MESSAGES["choice_recap"].format(player_choice=player.capitalize(),
         computer_choice=computer.capitalize()))
 
@@ -110,8 +109,10 @@ def display_winner(player, computer, winner):
         prompt(MESSAGES["tie"])
 
 def update_score_tracker(winner, score_tracker):
+
     if winner in ('player_wins', 'computer_wins'):
         score_tracker[winner] += 1
+
     return score_tracker
 
 def display_score(scores):
@@ -122,9 +123,12 @@ def display_score(scores):
         computer_wins=computer_count))
 
 def display_grand_winner(score_tracker):
+
     for winner, score in score_tracker.items():
+
         if score == WINNING_SCORE:
             game_winner = winner
+
             if game_winner == 'player_wins':
                 prompt(MESSAGES["grand_winner"].format(winner="Player"))
             else:
@@ -132,14 +136,12 @@ def display_grand_winner(score_tracker):
 
 def start_game_play():
     get_rules_choice()
-
     score_tracker = {'player_wins': 0, 'computer_wins':0}
 
     while True:
         list_of_scores = list(score_tracker.values())
 
         while WINNING_SCORE not in list_of_scores:
-
             player= get_player_choice()
             computer = get_computer_choice()
             clear_screen()
@@ -148,6 +150,7 @@ def start_game_play():
             score_tracker = update_score_tracker(winner, score_tracker)
             list_of_scores = list(score_tracker.values())
             display_score(score_tracker)
+
         display_grand_winner(score_tracker)
         break
 
@@ -167,6 +170,7 @@ while True:
 
     if answer.lower() in ('n', 'no'):
         break
+
     clear_screen()
 
 clear_screen()
