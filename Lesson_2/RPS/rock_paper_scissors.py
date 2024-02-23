@@ -151,6 +151,8 @@ def start_game_play():
         display_grand_winner(score_tracker)
         break
 
+# Kept this out of a function to prevent callstack errors.
+
 clear_screen()
 prompt(MESSAGES['welcome'])
 
