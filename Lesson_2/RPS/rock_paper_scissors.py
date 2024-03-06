@@ -175,3 +175,4 @@ while True:
 
 clear_screen()
 prompt(MESSAGES['goodbye'])
+
